@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
+    <entity name="Accreditation" representedClassName="Accreditation" syncable="YES">
+        <attribute name="accredited_on" optional="YES" attributeType="Date" minDateTimeInterval="493149000" syncable="YES"/>
+        <attribute name="active" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" minValueString="10000" indexed="YES" syncable="YES"/>
+        <attribute name="returned_on" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="with_cord" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
+    <entity name="Device" representedClassName="Device" syncable="YES">
+        <attribute name="device_status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="employee_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="imgUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="model" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="os_version" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="accreditation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Accreditation" syncable="YES"/>
+    </entity>
+    <entity name="Employee" representedClassName="Employee" syncable="YES">
+        <attribute name="dev_count" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="industry" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="manager" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="project" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="devices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Device" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Accreditation" positionX="-4590" positionY="-163" width="128" height="118"/>
+        <element name="Device" positionX="-4394" positionY="-385" width="128" height="163"/>
+        <element name="Employee" positionX="-4718" positionY="-378" width="128" height="148"/>
+    </elements>
+</model>
