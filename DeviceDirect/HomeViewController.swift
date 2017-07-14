@@ -44,7 +44,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     //Notification when sync complete
-    func syncCompleted(_ notification: Notification) {
+    @objc func syncCompleted(_ notification: Notification) {
         if let msg = notification.userInfo?["error"] as? String {
             //logout with alert
             alertsManager.presentLogoutAlert(msg)

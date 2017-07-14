@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Device.createDefaultDevice()
         //Employee.createDefaultEmployee()
         UINavigationBar.appearance().tintColor = UIColor(red: 249.0/255.0, green: 162.0/255.0, blue: 11.0/255.0, alpha: 1.0)
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.darkGray]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.darkGray]
         return true
     }
 

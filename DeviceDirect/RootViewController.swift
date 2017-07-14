@@ -98,10 +98,10 @@ class RootViewController: UIViewController, LoginControllerDelegate {
             }
             else
          {*/
-        //addAnimation
-        let indicator = BlockingUIIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-        ServiceManager.shared.performInitialSyncOperation(with: indicator)
+        //addAnimation        
         DispatchQueue.main.async {
+            let indicator = BlockingUIIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+            ServiceManager.shared.performInitialSyncOperation(with: indicator)
             self.loginController.activityIndicator.stopAnimating()
             self.appHomeController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RootNavigation")
             

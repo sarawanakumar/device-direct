@@ -23,13 +23,13 @@ class DeviceReaderViewController: UIViewController, AVCaptureMetadataOutputObjec
         captureSession = AVCaptureSession()
         
         //set input device for capture
-        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         
         //input object
         let videoInput: AVCaptureDeviceInput!
         
         do {
-            videoInput = try AVCaptureDeviceInput(device: captureDevice)
+            videoInput = try AVCaptureDeviceInput(device: captureDevice!)
         }
         catch {
             //FOR DEMO
@@ -57,7 +57,7 @@ class DeviceReaderViewController: UIViewController, AVCaptureMetadataOutputObjec
             
             metaDataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             //metaDataOutput.metadataObjectTypes = [AVMetadataObjectTypeEAN13Code]
-            metaDataOutput.metadataObjectTypes = [AVMetadataObjectTypeEAN8Code]
+            metaDataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.ean8]
         }
         else {
             unableToPerformScanning()
@@ -66,7 +66,7 @@ class DeviceReaderViewController: UIViewController, AVCaptureMetadataOutputObjec
         //layer preview
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = view.layer.bounds
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         view.layer.addSublayer(previewLayer)
         
         captureSession.startRunning()
@@ -97,8 +97,9 @@ class DeviceReaderViewController: UIViewController, AVCaptureMetadataOutputObjec
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         if let code = metadataObjects.first {
             let readableCode = code as? AVMetadataMachineReadableCodeObject
-            if let readable = readableCode {
-                let code = readingSuccessfulWithCode(readable.stringValue)
+            if let readable = readableCode,
+                let value = readable.stringValue {
+                let code = readingSuccessfulWithCode(value)
                 performResultantAction(forCode: code)
             }
             

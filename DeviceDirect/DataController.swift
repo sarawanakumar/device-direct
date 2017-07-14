@@ -320,7 +320,7 @@ class DataController: NSObject {
                         let formatter = DateFormatter()
                         formatter.dateFormat = "yyyy-MM-dd"
                         var date = val as! String
-                        date = date[date.startIndex...date.characters.index(date.startIndex, offsetBy: 9)]
+                        date = String(date[date.startIndex...date.characters.index(date.startIndex, offsetBy: 9)])
                         data!.setValue(formatter.date(from: date), forKey: attr)
                     }
                     else {

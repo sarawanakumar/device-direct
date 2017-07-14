@@ -50,9 +50,9 @@ class DeviceDashboardTableViewController: UITableViewController, UISearchBarDele
     }
     
     func updateDeviceCountView() {
-        let totalPads = devicesToPresent.filter({$0.type == "Pad"}).count ?? 0
-        let totalPhones = devicesToPresent.filter({$0.type == "Phone"}).count ?? 0
-        let totalWatches = devicesToPresent.filter({$0.type == "Watch"}).count ?? 0
+        let totalPads = devicesToPresent.filter({$0.type == "Pad"}).count 
+        let totalPhones = devicesToPresent.filter({$0.type == "Phone"}).count 
+        let totalWatches = devicesToPresent.filter({$0.type == "Watch"}).count 
         OperationQueue.main.addOperation { 
             self.phoneCount.text = String(totalPhones)
             self.padCount.text = String(totalPads)
